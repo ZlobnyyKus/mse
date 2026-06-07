@@ -1,0 +1,67 @@
+body.accessible {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --text: #000000;
+    --muted: #111111;
+    --primary: #000000;
+    --primary-dark: #000000;
+    --border: #000000;
+    --shadow: none;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+body.accessible * {
+    letter-spacing: 0.02em;
+}
+
+body.accessible .top-header,
+body.accessible .site-footer,
+body.accessible .main-nav,
+body.accessible .banner,
+body.accessible .hero-card,
+body.accessible .card,
+body.accessible .info-block,
+body.accessible .form-card,
+body.accessible .page-header,
+body.accessible .content-article,
+body.accessible .auth-card,
+body.accessible .error-page,
+body.accessible .admin-card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+    box-shadow: none !important;
+}
+
+body.accessible .main-nav a,
+body.accessible .site-footer a,
+body.accessible a {
+    color: #000000 !important;
+    text-decoration: underline;
+}
+
+body.accessible button,
+body.accessible .btn,
+body.accessible .accessibility-toggle {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 3px solid #000000 !important;
+    font-size: 20px;
+}
+
+body.accessible input,
+body.accessible textarea,
+body.accessible select {
+    border: 3px solid #000000 !important;
+    font-size: 20px;
+}
+
+body.accessible .logo-mark {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.accessible th {
+    background: #eeeeee !important;
+}
