@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Пользователи</h1>
+    <p>Администратор может создать учетную запись сотрудника или пользователя и назначить роль.</p>
+</section>
+<div class="grid-two">
+    <section class="form-card">
+        <h2>Создать пользователя</h2>
+        <form method="post" class="vertical-form">
+            <label>ФИО
+                <input type="text" name="full_name" required>
+            </label>
+            <label>Логин
+                <input type="text" name="username" required>
+            </label>
+            <label>Пароль
+                <input type="password" name="password" required>
+            </label>
+            <label>Роль
+                <select name="role">
+                    <option value="user">Пользователь</option>
+                    <option value="admin">Администратор</option>
+                </select>
+            </label>
+            <button type="submit">Создать</button>
+        </form>
+    </section>
+    <section class="info-block">
+        <h2>Список пользователей</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Логин</th>
+                    <th>ФИО</th>
+                    <th>Роль</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.full_name }}</td>
+                        <td>{{ 'Администратор' if user.role == 'admin' else 'Пользователь' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}
