@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Панель администратора</h1>
+    <p>Административная часть предназначена для управления новостями, материалами, пользователями и сообщениями посетителей.</p>
+</section>
+<div class="admin-grid">
+    <a class="admin-card" href="{{ url_for('admin_news') }}"><strong>{{ counts.news }}</strong><span>Новости</span></a>
+    <a class="admin-card" href="{{ url_for('admin_articles') }}"><strong>{{ counts.articles }}</strong><span>Материалы</span></a>
+    <a class="admin-card" href="{{ url_for('admin_messages') }}"><strong>{{ counts.messages }}</strong><span>Сообщения</span></a>
+    <a class="admin-card" href="{{ url_for('admin_users') }}"><strong>{{ counts.users }}</strong><span>Пользователи</span></a>
+</div>
+{% endblock %}

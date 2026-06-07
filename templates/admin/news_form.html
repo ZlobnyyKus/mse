@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="form-card wide-card">
+    <h1>{{ title }}</h1>
+    <form method="post" class="vertical-form">
+        <label>Заголовок
+            <input type="text" name="title" value="{{ item.title if item else '' }}" required>
+        </label>
+        <label>Краткое описание
+            <input type="text" name="summary" value="{{ item.summary if item else '' }}" required>
+        </label>
+        <label>Текст новости
+            <textarea name="content" rows="10" required>{{ item.content if item else '' }}</textarea>
+        </label>
+        <button type="submit">Сохранить</button>
+    </form>
+</section>
+{% endblock %}

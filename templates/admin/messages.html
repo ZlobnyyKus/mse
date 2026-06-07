@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Сообщения пользователей</h1>
+    <p>Раздел демонстрирует систему обмена сообщениями между посетителями сайта и администратором.</p>
+</section>
+<div class="table-wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Пользователь</th>
+            <th>ФИО</th>
+            <th>Email</th>
+            <th>Тема</th>
+            <th>Сообщение</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.created_at[:16] }}</td>
+                <td>{{ item.username or 'Гость' }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.subject }}</td>
+                <td>{{ item.message }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('admin_message_status', item_id=item.id) }}">
+                        <select name="status" onchange="this.form.submit()">
+                            {% for status in ['Новое', 'В работе', 'Закрыто'] %}
+                                <option value="{{ status }}" {% if item.status == status %}selected{% endif %}>{{ status }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
