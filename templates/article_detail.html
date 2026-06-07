@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="content-article">
+    <p class="tag">{{ article.category }}</p>
+    <h1>{{ article.title }}</h1>
+    <p class="lead">{{ article.summary }}</p>
+    <p>{{ article.content }}</p>
+</article>
+{% endblock %}

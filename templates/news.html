@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Новости</h1>
+    <p>Лента новостей используется для публикации актуальных сообщений учреждения и информирования посетителей сайта.</p>
+</section>
+<div class="cards two">
+    {% for item in news_items %}
+        <article class="card">
+            <p class="date">{{ item.created_at[:10] }}</p>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.summary }}</p>
+            <a href="{{ url_for('news_detail', item_id=item.id) }}">Подробнее</a>
+        </article>
+    {% endfor %}
+</div>
+{% endblock %}

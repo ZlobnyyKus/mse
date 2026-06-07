@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth-card">
+    <h1>Регистрация пользователя</h1>
+    <p>Сценарий самостоятельного создания учетной записи пользователем.</p>
+    <form method="post" class="vertical-form">
+        <label>ФИО
+            <input type="text" name="full_name" required>
+        </label>
+        <label>Логин
+            <input type="text" name="username" required>
+        </label>
+        <label>Пароль
+            <input type="password" name="password" minlength="6" required>
+        </label>
+        <button type="submit">Создать учетную запись</button>
+    </form>
+</section>
+{% endblock %}

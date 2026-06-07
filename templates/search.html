@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Поиск по сайту</h1>
+    <form action="{{ url_for('search') }}" method="get" class="search-form wide">
+        <input type="search" name="q" value="{{ q }}" placeholder="Введите поисковый запрос" required>
+        <button type="submit">Найти</button>
+    </form>
+</section>
+{% if q %}
+    <section class="section">
+        <h2>Результаты поиска по запросу «{{ q }}»</h2>
+        {% if not page_results and not news_results and not article_results %}
+            <p>Материалы по запросу не найдены.</p>
+        {% endif %}
+        {% for page in page_results %}
+            <article class="search-result">
+                <h3>{{ page.title }}</h3>
+                <p>{{ page.content[:220] }}...</p>
+                <a href="/{{ page.slug }}">Открыть страницу</a>
+            </article>
+        {% endfor %}
+        {% for item in news_results %}
+            <article class="search-result">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.summary }}</p>
+                <a href="{{ url_for('news_detail', item_id=item.id) }}">Открыть новость</a>
+            </article>
+        {% endfor %}
+        {% for article in article_results %}
+            <article class="search-result">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.summary }}</p>
+                <a href="{{ url_for('article_detail', item_id=article.id) }}">Открыть материал</a>
+            </article>
+        {% endfor %}
+    </section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.content }}</p>
+</section>
+<section class="section">
+    <div class="section-heading">
+        <h2>Материалы раздела</h2>
+        <span>Не менее пяти публикаций по выбранной тематике</span>
+    </div>
+    <div class="cards two">
+        {% for article in articles %}
+            <article class="card">
+                <p class="tag">{{ article.category }}</p>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.summary }}</p>
+                <a href="{{ url_for('article_detail', item_id=article.id) }}">Читать материал</a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

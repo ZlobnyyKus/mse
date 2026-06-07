@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.content }}</p>
+</section>
+<div class="grid-two">
+    <section class="info-block">
+        <h2>Контактная информация</h2>
+        <p><strong>Адрес:</strong> Нижегородская область, г. Нижний Новгород</p>
+        <p><strong>Телефон:</strong> +7 (831) 000-00-00</p>
+        <p><strong>Email:</strong> info@example.ru</p>
+        <p><strong>Режим работы:</strong> понедельник — пятница, 9:00–18:00</p>
+    </section>
+    <section class="form-card">
+        <h2>Форма обратной связи</h2>
+        <form method="post" class="vertical-form">
+            <label>ФИО
+                <input type="text" name="name" value="{{ user.full_name if user else '' }}" required>
+            </label>
+            <label>Email
+                <input type="email" name="email" required>
+            </label>
+            <label>Тема сообщения
+                <input type="text" name="subject" required>
+            </label>
+            <label>Сообщение
+                <textarea name="message" rows="6" required></textarea>
+            </label>
+            <button type="submit">Отправить сообщение</button>
+        </form>
+    </section>
+</div>
+{% endblock %}

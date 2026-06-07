@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} — Информационный сайт МСЭ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/accessible.css') }}">
+</head>
+<body>
+<header class="top-header">
+    <div class="container header-line">
+        <a class="logo" href="{{ url_for('index') }}">
+            <span class="logo-mark">МСЭ</span>
+            <span class="logo-text">Главное бюро медико-социальной экспертизы<br><small>по Нижегородской области</small></span>
+        </a>
+        <div class="header-actions">
+            <button class="accessibility-toggle" type="button" id="accessibilityToggle">Версия для слабовидящих</button>
+            {% if current_user %}
+                {% if current_user.role == 'admin' %}
+                    <a class="small-link" href="{{ url_for('admin_index') }}">Админ-панель</a>
+                {% else %}
+                    <a class="small-link" href="{{ url_for('profile') }}">Личный кабинет</a>
+                {% endif %}
+                <a class="small-link" href="{{ url_for('logout') }}">Выход</a>
+            {% else %}
+                <a class="small-link" href="{{ url_for('login') }}">Вход</a>
+            {% endif %}
+        </div>
+    </div>
+    <nav class="main-nav">
+        <div class="container nav-inner">
+            {% for label, endpoint in main_menu %}
+                <a href="{{ url_for(endpoint) }}">{{ label }}</a>
+            {% endfor %}
+        </div>
+    </nav>
+</header>
+
+<main class="container main-content">
+    {% if breadcrumbs %}
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            {% for label, href in breadcrumbs %}
+                {% if href %}
+                    <a href="{{ href }}">{{ label }}</a>
+                    <span>/</span>
+                {% else %}
+                    <strong>{{ label }}</strong>
+                {% endif %}
+            {% endfor %}
+        </nav>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-list">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>Информационный сайт</h3>
+            <p>Учебный проект для демонстрации разработки web-сайта организации без использования CMS.</p>
+        </div>
+        <div>
+            <h3>Навигация</h3>
+            <a href="{{ url_for('sitemap') }}">Карта сайта</a><br>
+            <a href="{{ url_for('contacts') }}">Обратная связь</a><br>
+            <a href="{{ url_for('search') }}">Поиск</a>
+        </div>
+        <div>
+            <h3>Контакты</h3>
+            <p>Нижегородская область<br>Телефон: +7 (831) 000-00-00<br>Email: info@example.ru</p>
+        </div>
+    </div>
+</footer>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

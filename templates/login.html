@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth-card">
+    <h1>Вход на сайт</h1>
+    <p>Используйте тестовые учетные записи администратора или пользователя.</p>
+    <form method="post" class="vertical-form">
+        <label>Логин
+            <input type="text" name="username" required>
+        </label>
+        <label>Пароль
+            <input type="password" name="password" required>
+        </label>
+        <button type="submit">Войти</button>
+    </form>
+    <p class="muted">Нет учетной записи? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="error-page">
+    <h1>404</h1>
+    <h2>Страница не найдена</h2>
+    <p>Запрашиваемая страница отсутствует или была перемещена. Используйте меню, карту сайта или поиск.</p>
+    <div class="hero-actions">
+        <a class="btn" href="{{ url_for('index') }}">На главную</a>
+        <a class="btn btn-outline" href="{{ url_for('sitemap') }}">Карта сайта</a>
+    </div>
+</section>
+{% endblock %}

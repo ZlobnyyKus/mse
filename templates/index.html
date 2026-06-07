@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero banner">
+    <div class="hero-text">
+        <p class="eyebrow">Информационный web-сайт учреждения</p>
+        <h1>ФКУ «Главное бюро медико-социальной экспертизы по Нижегородской области»</h1>
+        <p>Сайт помогает гражданам получить справочную информацию о порядке прохождения медико-социальной экспертизы, необходимых документах, услугах и способах связи с учреждением.</p>
+        <div class="hero-actions">
+            <a class="btn" href="{{ url_for('citizens') }}">Порядок обращения</a>
+            <a class="btn btn-outline" href="{{ url_for('contacts') }}">Задать вопрос</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <h2>Быстрый поиск</h2>
+        <form action="{{ url_for('search') }}" method="get" class="search-form">
+            <input type="search" name="q" placeholder="Например: документы, ИПРА, консультация" required>
+            <button type="submit">Найти</button>
+        </form>
+    </div>
+</section>
+
+<section class="quick-links">
+    <a href="{{ url_for('services') }}">Услуги МСЭ</a>
+    <a href="{{ url_for('documents') }}">Документы</a>
+    <a href="{{ url_for('news_list') }}">Новости</a>
+    <a href="{{ url_for('sitemap') }}">Карта сайта</a>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <h2>Последние новости</h2>
+        <a href="{{ url_for('news_list') }}">Все новости</a>
+    </div>
+    <div class="cards three">
+        {% for item in latest_news %}
+            <article class="card">
+                <p class="date">{{ item.created_at[:10] }}</p>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.summary }}</p>
+                <a href="{{ url_for('news_detail', item_id=item.id) }}">Подробнее</a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <h2>Полезные материалы</h2>
+        <span>Материалы распределены по тематическим разделам</span>
+    </div>
+    <div class="cards three">
+        {% for article in popular_articles %}
+            <article class="card compact">
+                <p class="tag">{{ article.category }}</p>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.summary }}</p>
+                <a href="{{ url_for('article_detail', item_id=article.id) }}">Открыть материал</a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

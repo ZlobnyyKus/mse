@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-header">
+    <h1>Карта сайта</h1>
+    <p>Страница отображает структуру информационного сайта и помогает пользователю быстро перейти к нужному разделу.</p>
+</section>
+<div class="grid-two">
+    <section class="info-block">
+        <h2>Основные страницы</h2>
+        <ul class="sitemap-list">
+            {% for label, endpoint in main_menu %}
+                <li><a href="{{ url_for(endpoint) }}">{{ label }}</a></li>
+            {% endfor %}
+            <li><a href="{{ url_for('search') }}">Поиск</a></li>
+            <li><a href="{{ url_for('contacts') }}">Обратная связь</a></li>
+        </ul>
+    </section>
+    <section class="info-block">
+        <h2>Новости</h2>
+        <ul class="sitemap-list">
+            {% for item in news_items %}
+                <li><a href="{{ url_for('news_detail', item_id=item.id) }}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+<section class="info-block">
+    <h2>Полезные материалы</h2>
+    <ul class="sitemap-list columns">
+        {% for article in articles %}
+            <li><span>{{ article.category }}:</span> <a href="{{ url_for('article_detail', item_id=article.id) }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

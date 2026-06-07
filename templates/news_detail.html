@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="content-article">
+    <p class="date">{{ item.created_at[:10] }}</p>
+    <h1>{{ item.title }}</h1>
+    <p class="lead">{{ item.summary }}</p>
+    <p>{{ item.content }}</p>
+</article>
+{% endblock %}
